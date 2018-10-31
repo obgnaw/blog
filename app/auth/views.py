@@ -3,16 +3,19 @@ from flask_login import login_user, logout_user, login_required, \
     current_user
 from . import auth
 from .. import db
-from ..models import User
 from ..email import send_email
 from .forms import LoginForm, RegistrationForm
+from ..models import Users
+
 
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        # u = Users(email="807526329@qq.com",password="123456",username="Obgnaw Hellscream")
+        # u.save()
+        user = Users.get_or_none(Users.email==form.email.data)
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             next = request.args.get('next')
