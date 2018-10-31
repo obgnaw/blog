@@ -1,6 +1,6 @@
 from flask import render_template, session, redirect, url_for, current_app
 from .. import db
-from ..models import User
+from ..models import Users
 from ..email import send_email
 from . import main
 from .forms import NameForm
@@ -10,10 +10,10 @@ from .forms import NameForm
 def index():
     form = NameForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.name.data).first()
+        user = Users.get_or_none(Users.username==form.name.data)
         if user is None:
-            user = User(username=form.name.data)
-            db.session.add(user)
+            user = Users(username=form.name.data)
+            user.save()
             session['known'] = False
             if current_app.config['FLASKY_ADMIN']:
                 send_email(current_app.config['FLASKY_ADMIN'], 'New User',

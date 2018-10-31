@@ -1,21 +1,22 @@
+from peewee import *
+
 from . import db
 
-
-class Role(db.Model):
-    __tablename__ = 'roles'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True)
-    users = db.relationship('User', backref='role', lazy='dynamic')
-
-    def __repr__(self):
-        return '<Role %r>' % self.name
+class BaseModel(Model):
+    class Meta:
+        database = db
 
 
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, index=True)
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+class Roles(BaseModel):
+    name = CharField(null=True, unique=True)
 
-    def __repr__(self):
-        return '<User %r>' % self.username
+    class Meta:
+        table_name = 'roles'
+
+class Users(BaseModel):
+    role = ForeignKeyField(column_name='role_id', field='id', model=Roles, null=True)
+    username = CharField(null=True, unique=True)
+
+    class Meta:
+        table_name = 'users'
+
