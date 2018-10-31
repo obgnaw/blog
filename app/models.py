@@ -58,3 +58,11 @@ class Users(UserMixin,BaseModel):
 @login_manager.user_loader
 def load_user(user_id):
     return Users.get_or_none(int(user_id))
+
+class Posts(BaseModel):
+    author = ForeignKeyField(column_name='author_id', field='id', model=Users, null=True)
+    body = TextField(null=True)
+    timestamp = DateTimeField(index=True, null=True)
+
+    class Meta:
+        table_name = 'posts'
