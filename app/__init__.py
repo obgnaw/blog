@@ -9,7 +9,7 @@ from config import config
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
-db = SqliteDatabase('data-dev.sqlite', **{})
+db = SqliteDatabase('data-dev.sqlite')
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
