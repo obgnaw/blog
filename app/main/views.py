@@ -42,7 +42,7 @@ def page_upload():
         f = request.files["md_file"]
         md = md2html()
         html, meta, toc = md.parse(f.read().decode("utf-8"))
-        author = Users.get(Users.username == "wangbo" )
+        author = Users.get(Users.username == meta.get("authors") )
         post = Posts(
             author = author,
             body = html,
