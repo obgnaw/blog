@@ -2,7 +2,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import db, login_manager
 from peewee import *
-
+import datetime
 
 class BaseModel(Model):
     class Meta:
@@ -61,8 +61,10 @@ def load_user(user_id):
 
 class Posts(BaseModel):
     author = ForeignKeyField(column_name='author_id', field='id', model=Users, null=True)
-    body = TextField(null=True)
-    timestamp = DateTimeField(index=True, null=True)
-
+    body = TextField()
+    timestamp = DateTimeField(index=True, default=datetime.datetime.now)
+    title = CharField()
+    summary = TextField(null=True)
+    toc = TextField(null=True)
     class Meta:
         table_name = 'posts'

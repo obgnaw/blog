@@ -1,11 +1,11 @@
 function redirect() {
-    location.href = "/articles";
+    location.href = "/upload";
 }
 
 function upload() {
     var formData = new FormData($("upload_form")[0]);
     $.ajax({
-        url: "/api/file/upload",
+        url: "/upload",
         type: "POST",
         data: formData,
         async: false,

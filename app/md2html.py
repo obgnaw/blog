@@ -90,9 +90,9 @@ class md2html:
             blog_content=html,
             static_root=self.STATIC_ROOT,
             title=meta.get("title"),
-            title_html=self.render_title_html(meta.get("title")),
+            title_html=meta.get("title"),
             summary=meta.get("summary", ""),
-            authors=self.render_authors_html(meta.get("authors")),
+            authors=meta.get("authors"),
             tags=self.render_tags_html(meta.get("tags")),
             toc=toc,
         )
@@ -103,5 +103,6 @@ if __name__ == "__main__":
     with open(r"About.md", "r", encoding="utf-8") as f:
         text = f.read()
         html, meta, toc = md.parse(text)     
+        print(meta)    
         result = md.render(html, meta, toc)
         # print(result)

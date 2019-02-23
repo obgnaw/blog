@@ -1,4 +1,4 @@
-{% extends "basePost.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     {{ title }}
@@ -180,7 +180,7 @@
                         </h5>
                     </div>
                     <div class="collapse in" id="meta_box">
-                        {{ title_html  | safe}}
+                        <div class='sidebar-module-inset'><h5 class='sidebar-title'><i class='icon-circle-blank side-icon'></i>标题</h5><p>{{ title }}</p></div>
                         <div class="sidebar-module-inset">
                             <h5 class="sidebar-title"><i class="icon-lightbulb side-icon"></i>摘要</h5>
 
@@ -189,12 +189,7 @@
                         <hr class="side-hr">
                         <div>
                             <h5 class="sidebar-title"><i class="icon-user side-icon"></i>作者</h5>
-                            <div>{{ authors | safe}}</div>
-                        </div>
-                        <hr class="side-hr">
-                        <div>
-                            <h5 class="sidebar-title"><i class="icon-tags side-icon"></i>标签</h5>
-                            <div>{{ tags | safe }}</div>
+                            <div><a href='' class='tag-index'>{{ authors }}</a></div>
                         </div>
                         <hr class="side-hr">
                     </div>

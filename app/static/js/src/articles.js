@@ -5,7 +5,6 @@ var ARTICLE_ITEM_TEMPLATE = "" +
     "<div>" +
     "<span class='article-property' title='最后修改时间'><i class='article-icon icon-calendar'></i>{modify_time}</span>" +
     "<span class='article-property' title='作者'><i class='article-icon icon-user'></i>{author}</span>" +
-    "<span class='article-property' title='标签'><i class='article-icon icon-tags'></i>{tags}</span>" +
     "</div>" +
     "</div>" +
     "<div><p>{summary}</p></div>" +
