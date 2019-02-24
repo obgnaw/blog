@@ -31,12 +31,13 @@ def get_all_article():
         "title": post.title,
         "summary": post.summary,
         "authors": [post.author.username,],
-        "publish_date": "2019-02-23",
+        "publish_date": post.timestamp,
         "tags": []
         }
     return jsonify(articles)
 
 @main.route('/upload', methods=['GET', 'POST'])
+@login_required
 def page_upload():
     if request.method == 'POST':
         f = request.files["md_file"]
